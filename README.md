@@ -11,26 +11,40 @@
 [Citation for ERD](https://circle.visual-paradigm.com/hospital/)
 1. Use the Doctors Office ERD above to answer the following questions:
     1. How many patients can each doctor have?
-    1. How many doctors can each patient have?
-    1. How would you describe the relationship between patients and tests? Be sure to use either one-to-one, one-to-many, or many-to-many in your answer.
-    1. What are the foreign keys in this diagram?
-    1. What is the primary key for the Tests table.
-    1. What query would return the number of doctors who have a specialization in "pediatrics"?
+        * a doctor can have many patients
+    3. How many doctors can each patient have?
+        * a patient can only have 1 doctor
+    5. How would you describe the relationship between patients and tests? Be sure to use either one-to-one, one-to-many, or many-to-many in your answer.
+        * the patients to tests relationships is one-to-many. In other words, a patient can have many tests, but a test can only be assigned to one patient.
+    7. What are the foreign keys in this diagram?
+        * patients FK is 'doctor_id', tests FK is 'patient_id'.
+    9. What is the primary key for the Tests table.
+        * tests PK is 'id'.
+    11. What query would return the number of doctors who have a specialization in "pediatrics"?
+        * SELECT COUNT(specialization) FROM doctors
+        * WHERE specialization = 'pediatrics';
 
 <br>
 
 2. What does a join table do? Why would we need one?
-3. What is a question that the following query helps answer?
+    * a join table allows us to view information from two tables at the same time. For instance if I wanted to know what a patients name and age and doctor, I would NEED a join table to show patient and age for 'patients' then name for 'doctors'.
+4. What is a question that the following query helps answer?
 ```SQL
 SELECT hometown, COUNT(name) FROM artists
 GROUP BY hometown;
 ```
+* How many artists are from each hometown? (no duplicates)
 
 4. I'm trying to write a query to find the average age of all patients, but it's not working. How would you modify this query to get it to work as expected?
 ```SQL
 SELECT age FROM AVERAGE(patients);
 ```
+```
+* SELECT AVG(age) FROM patients
+* GROUP BY age;
+```
 5. How would you describe the difference between a `LEFT JOIN` and an `INNER JOIN`
+* an INNER JOIN will only grab information that is common between both tables, whereas a LEFT JOIN will grab information from your left table (which did you type first?) AND the common information between tables.
  
 ## Exercise (10 Points Possible)
 
